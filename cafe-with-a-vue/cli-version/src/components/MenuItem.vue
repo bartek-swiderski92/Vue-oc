@@ -20,7 +20,7 @@ export default {
     },
     quantity: {
       type: Number,
-      defaut: 1
+      default: 1
     }
   },
   data() {
@@ -38,7 +38,11 @@ export default {
     }
   },
   methods: {
+<<<<<<< Updated upstream
     updateShoppingCart(quantity) {
+=======
+    updateShoppingCart (quantity) {
+>>>>>>> Stashed changes
       this.$emit('add-items-to-cart', quantity)
     }
   },
@@ -63,7 +67,11 @@ export default {
       <div>
         <label for="add-item-quantity">Quantity: {{ quantity }}</label>
         <input v-model.number="quantity" id="add-item-quantity" type="number" />
+<<<<<<< Updated upstream
         <button @click="updateShoppingCart(quantity)">
+=======
+        <button @add-items-to-cart="addToShoppingCart(quantity)">
+>>>>>>> Stashed changes
           Add to Shopping Cart
         </button>
       </div>
