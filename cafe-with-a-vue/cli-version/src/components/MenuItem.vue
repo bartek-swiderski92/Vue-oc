@@ -1,29 +1,55 @@
 <script>
 export default {
-  name: 'MenuItem',
-  props: ['addToShoppingCart', 'image', 'inStock', 'name', 'price', 'quantity'],
+  name: "MenuItem",
+  // props: ['addToShoppingCart', 'image', 'inStock', 'name', 'price', 'quantity'],
+  props: {
+    addToShoppingCart: {
+      type: Function,
+      required: true
+    },
+    image: {
+      type: Object,
+      required: true
+    },
+    inStock: {
+      type: Boolean,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    quantity: {
+      type: Number,
+      default: 1
+    }
+  },
   data() {
     return {
       onSale: false
-    }
+    };
   },
   computed: {
     generatedPrice() {
       if (this.onSale) {
-        return (this.price * 0.9).toFixed(2)
+        return (this.price * 0.9).toFixed(2);
       } else {
-        return this.price
+        return this.price;
       }
     }
   },
   beforeMount() {
-    const today = new Date().getDate()
+    const today = new Date().getDate();
 
     if (today % 2 === 0) {
-      this.onSale = true
+      this.onSale = true;
     }
   }
-}
+};
 </script>
 
 <template>
@@ -31,15 +57,16 @@ export default {
     <img class="menu-item__image" :src="image.source" :alt="image.alt" />
     <div>
       <h3>{{ name }}</h3>
-      <p>Price: {{ generatedPrice }} <span v-if="onSale">(10% off!)</span></p>
+      <p>
+        Price: {{ generatedPrice }}
+        <span v-if="onSale">(10% off!)</span>
+      </p>
       <p v-if="inStock">In Stock</p>
       <p v-else>Out of Stock</p>
       <div>
         <label for="add-item-quantity">Quantity: {{ quantity }}</label>
         <input v-model.number="quantity" id="add-item-quantity" type="number" />
-        <button @click="addToShoppingCart(quantity)">
-          Add to Shopping Cart
-        </button>
+        <button @click="addToShoppingCart(quantity)">Add to Shopping Cart</button>
       </div>
     </div>
   </div>
