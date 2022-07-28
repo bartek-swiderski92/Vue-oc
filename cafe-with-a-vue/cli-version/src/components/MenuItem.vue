@@ -1,8 +1,8 @@
 <script>
-import BaseButton from './BaseButton.vue'
+import BaseButton from "./BaseButton.vue";
 
 export default {
-  name: 'MenuItem',
+  name: "MenuItem",
   components: {
     BaseButton
   },
@@ -31,30 +31,30 @@ export default {
   data() {
     return {
       onSale: false
-    }
+    };
   },
   computed: {
     generatedPrice() {
       if (this.onSale) {
-        return (this.price * 0.9).toFixed(2)
+        return (this.price * 0.9).toFixed(2);
       } else {
-        return this.price
+        return this.price;
       }
     }
   },
   methods: {
     updateShoppingCart(quantity) {
-      this.$emit('add-items-to-cart', quantity)
+      this.$emit("add-items-to-cart", quantity);
     }
   },
   beforeMount() {
-    const today = new Date().getDate()
+    const today = new Date().getDate();
 
     if (today % 2 === 0) {
-      this.onSale = true
+      this.onSale = true;
     }
   }
-}
+};
 </script>
 
 <template>
@@ -62,16 +62,20 @@ export default {
     <img class="menu-item__image" :src="image.source" :alt="image.alt" />
     <div>
       <h3>{{ name }}</h3>
-      <p>Price: {{ generatedPrice }} <span v-if="onSale">(10% off!)</span></p>
+      <p>
+        Price: {{ generatedPrice }}
+        <span v-if="onSale">(10% off!)</span>
+      </p>
       <p v-if="inStock">In Stock</p>
       <p v-else>Out of Stock</p>
       <div>
         <label for="add-item-quantity">Quantity: {{ quantity }}</label>
         <input v-model.number="quantity" id="add-item-quantity" type="number" />
-        <BaseButton
-          @click="updateShoppingCart(quantity)"
-          text="Add to shopping cart"
-        />
+        <BaseButton @click="updateShoppingCart(quantity)">
+          <template>
+            Add to shopping Cart
+          </template>
+        </BaseButton>
       </div>
     </div>
   </div>
