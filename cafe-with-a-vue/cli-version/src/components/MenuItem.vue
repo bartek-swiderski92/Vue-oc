@@ -44,3 +44,32 @@ export default {
     </div>
   </div>
 </template>
+
+
+<style lang="scss">
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-item {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.menu-item__image {
+  max-width: 300px;
+}
+
+.shopping-cart {
+  position: absolute;
+  right: 30px;
+  top: 0;
+}
+
+</style>
